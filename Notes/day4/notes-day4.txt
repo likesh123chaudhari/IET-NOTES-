@@ -1,0 +1,790 @@
+Callback function:
+
+
+function show(a)
+{
+console.log(a);
+}
+show();//we can pass boolean,array,json obj,number,string.. we can pass any values to the function argument
+====================================================================
+///in js we can pass entire function as a function argument also and the passed function is called as callback function.
+function show()
+{
+console.log("hello");
+}
+
+function demo(arg)
+{
+console.log(arg);
+arg();
+} 
+demo(5);
+demo("hi");
+demo(show);//pass the entire function as a argument.passing the reference of show().show() is called as callback function
+
+==================================================================
+<script>
+function show()
+{
+console.log("hello");
+}
+
+function demo(arg)
+{
+console.log(arg);
+} 
+demo(show); //we are not calling show(). we are only passing show() as a argument.function will be received in args
+</script>
+
+
+==========================
+faq: the function which is pass as a callback,if we want to call that function
+<script>
+function show()
+{
+console.log("hello");
+}
+
+function demo(arg)
+{
+console.log(arg);//it will print entire function defination
+arg();// it will call the passed function
+} 
+demo(show); 
+</script>
+
+===========================================================
+
+========================================================
+<script>
+function show() // if this function is defined outside,then this function becomes global. it can be called from anywhere
+{
+console.log("hello");
+}
+function demo(arg)
+{
+	console.log(arg);
+	arg();////show will only be accessible inside demo() that too with the help of argument only.
+	show();//error
+}
+var x=3;
+demo(3); or demo(x) ; //here we can pass direct value or reference of that value
+
+demo(show);// we can pass reference
+demo(function show()  // we can pass value for that reference. if declared inside, it will be local function,cant be called from anywhere. 
+{
+console.log("hello");
+});
+
+</script>
+//we can put entire function defination as the argument
+
+//in the above ex,show() defination is directly written as the argument of demo and show will become local so we cant call show directly from anywhere.
+//show will only be accessible inside demo() that too with the help of argument only.
+==>when we want our function to be reused at any place,defined gobally.
+=====================================================================================================
+note:
+==>now if we cant call this function from anywhere of the html file, so why we should give name to this function.
+==>when a function is directly defined in the argument then there is no need to give its name/reference because the passed function cannot be referred in the entire program.it can only be referred by the argument in the container function.
+
+
+<script>
+function demo(arg)
+{
+	console.log(arg);
+	arg();
+}
+demo(function ()  
+{
+console.log("hello");
+});
+</script>
+//A function without a name is a anonymous function.
+
+
+==================================================================================
+
+IN js everything is an object so  we can assigned a refence to an object.
+ ex: var arr=[1,2,3,4];//[] is an object,arr is reference to anobject
+var obj={id:1,name="rohit"};
+
+a function is also an object.we can assigned a refence to a function.
+
+var obj=function show(){
+}
+
+var obj=show;//show() ka reference obj main dala hai. obj/show reference is pointing to show()
+===============================
+
+function show(){
+console.log("hello");
+}
+//var a=3;  var obj=a; // 3 is of number type,obj will also be a number because a is assigned into obj
+var obj=show; // show is a function ,so obj will also become a function to us. we can call function with the help of obj and show. assigning function into reference
+
+console.log(obj); // it will print entire function.
+// we can call function by 2 ways
+obj();
+show();
+================================================
+why nameless function created.
+var obj=function show()
+{
+console.log("hello");
+}
+console.log(obj); 
+console.log(show);
+
+==>assignment done from right to left. it will get show as a reference,and finally it will get obj as a reference.
+==>in above show reference will become useless and after assigning into obj it will be lost
+show() is defined at the same time it is assigned into obj reference,show reference will get lost.
+=====================================================
+//anonymous function
+const sum=function(a,b){
+return a+b;
+}
+var rs=sum(4,9);
+console.log(rs); 
+=======================================
+new syntax of defining a anynomous function
+js has introduced a new way to write/define an anonymous function that new syntax is know as fat arrow syntax:
+
+var ref=()=>{
+}
+
+ex
+const show=()=>{
+console.log("hello");
+}
+show();
+
+========================================================
+//add 2 numbers
+const sum=(a,b)=>{
+return a+b;
+}
+const rs=sum(1,2);
+console.log(rs);
+
+OR
+const sum=(a,b)=> a+b;   ==>only 1 statement is der than remove{} and return keyword
+
+
+====================================================
+const increment=(n)=>return n+5;
+increment(2);
+or
+const increment=n=> n+5;
+increment(2);
+//remove () when single argument is there
+======================================================
+var arr=[10,3,7,18,6,5,8,4];
+==>requirement is we want to create  new array and new array shld contain only even array
+i.e var evenarray=[10,18,6,8,4];
+
+
+we r getting already defined function filter,which we get for array.
+filter means take out only selected items from given array.
+
+
+const evenarray=arr.filter((item)=>{
+if(item%2==0)
+return true;
+else
+return false;
+});
+console.log(evenarray);
+//filter() will take callback function as an argument
+//filter() will executed for each and every element. in every iteration,it will give you current element and receive in item argument
+//which type of filteration we want, that logic,we have to write as a condition.it will return boolean value from this callback function.if it  return true than that element will be filter and store in new array. filter() will create newarray for that value of iteration whose return boolean value is true
+
+OR
+
+
+const evenarray=arr.filter(item=> item%2==0);
+console.log(evenarray);
+
+
+
+******************
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+      
+    var arr=[10,3,7,18,6,5,8,4];
+   
+    var evenarray=arr.filter((item)=>{
+
+        if(item%2==0)
+        return true;
+        else
+        return false;
+    }
+    );
+    console.log(evenarray);
+</script>
+
+</body>
+</html>
+
+==========================================================
+for each loop
+adv is we need not have to mention starting and ending index. and it will iterate each and every element.
+
+to implement foreach loop ,foreach method is der //this method takes callback function as an argument
+
+var arr=[10,3,7,18,6,5,8,4];
+arr.forEach((item,i)=>{
+
+console.log(item,i);
+
+});
+
+
+
+//how forEach() works
+for each element of the array,this callback function will only be executed. each and every element will be assigned into item ......forEach will executed for each and every element of the array
+forEach() will not return anything
+//1st argument is the value of an array,2nd argument will always treat as a index number
+
+==================================================================
+//get new array from this array such that every element of  new array will be equal to the multiplication of existing array by 2 
+
+var arr=[10,3,7,18,6,5,8,4];
+const newarr =arr.map((item)=>{
+return 2*item;
+});
+console.log(newarr);
+
+map() is preddefined, used when we want to  perform certain operations on the original values to get new values in new array
+map() will accept callback function
+map()  will not modified current array ,it will create new array
+when we want to create new array from an existing array , in which no of element will going to same but we want to modify the element and store them in new array,in that case use map()
+
+//we cant use filter because we have to always return boolean value as true and manualyy we have to push new value in new array
+in map() whatever we are returning the value. automatically that value will be stored in new array
+========================================================================================
+
+
+//for each will do only iterartions. it will not help to give new array  and not help in doing modification, and no return in foreach loop
+//filter will some selected value based on some condition that we have applied. in filter boolean value will be return.
+when condition is true then only element will be return
+//map () will give new array , no of elements in new array will going to be same as of original array . in map new value will be return
+
+=============================================================================================================
+
+DOM manipulation: document object model
+
+==>in html file,we r having different html elements,whenever browser will going to load html file, before displaying data on browser screen,browser will prepare tree like model in own memory for all the tags.
+<body>
+	<div>
+		<h1>login</h1>
+	<div>
+	<div>
+		<form>
+			<input type ="text">
+			<input type="email">
+		</form>
+	</div>
+</body>
+
+why tree like structure is created?
+==>just to organise ur each and every element in a better way so that browser should understand which element should be display at which level i.e who is parent element,child element.
+==>maintain the hierarchy of the tags just to unserstand which element is placed inside  which parent element. 
+==>tree structure is created by the browser.this tree structure is technically  we called it as dom.
+=======================================================================================
+what is dom?
+==>dom is tree like structure that contains the hierarchy of the tags in a particular html file and this is dom.
+==>by looking at the tree,browser will decide where actually we need to display the data.where to display input,which elemnt is parent element,which element is at the same level,which element is child , it will decided based on this tree model.
+=============================================================================
+why we need to understand internal tree created by dom?
+==>we have to focus on manipulation
+==>manipulation means we have to perform certain operations on Dom.if we are having dom,dynamically we can add element on webpage.
+whenever we click on buttion,image should appear on webpage i.e image will be inseerted into dom and that is visible on webpage.
+==>we can remove existing elements,change the content of existing elements.
+==>dom manipulations means we have to update,manipulate structure of dom model and it will be reflected on webpage.
+==>dom manipualtion means ur page is currently open and using js code we are modifying dom.,constanly manipulting dom i.e add/remove/update elements
+==>i m having delete button for deleting row in table. dynamically we want to remove tr that is possible using dom manipulation.
+==>means if we r having webpage and on that webpage we want to dynamically update anything is possible using dom manipulation.
+
+What we can do with the help of dom
+==>we can add new element
+==>we can remove existing element. ex: using hide button we want to remove image,remove this element from dom 
+==>we can change the content of existing element.
+==>we can update the style for element. dynamically change the background
+==>we can get the content of the elements.
+==>we can update the attributes of the elements.
+by doing above things the structure of the dom will get changed as a result u will feel dynamically changes is happing on webpage.
+=====================================================================================
+all the above dom operations will be carried out by document object
+======================================================================================
+DOM MEANS USER PAGE PAR HAI ,SOURCE CODE PE NHI GAYA HAI.IF I CLICK ON BUTTON,THE CONTENT OF HEADING GETS CHANGED .PAGE WILL NOT RELOAD BECAUSE WE R NOT MAKING CHANGES TO SOURCE CODE NEITHER WE R RELOADING THE PAGE. USER WILL JUST DO OPERATIONS AND DYNAMICALLY UR PAGE WILL GET UPDATED I.E DOM
+==>MANIPULATION TABHI HOGA JAB ALREADY DOM IS PRESENT IN THE BROWSER AND  DYNAMICALLY USING JS WE R MODIFYING IT.
+==>WHEN WEBPAGE GETS CLOSED ALL THE MANIPULATIONS WILL BE VANISHED.
+===============================================================
+operations:
+
+1)get the content of an  elements: as soon as user clicks on button,read the content of h1 tag
+<body>
+<h1>welcome to our page</h1>
+<input type="button" value="get content">
+</body>
+
+
+==>for js every html element is an object.h1 is an object 
+==>on any html element,if we want to perform any operations either read/write operations. for doing these, i need to first get the object of html elements.
+on h1 ,if i want to read the data inside h1, then first i need to get the object. in js ,we need to get this object.
+
+==>to represent every element in js,we must have its object then only we can perform operations on them.
+=============================================================================
+<body>
+<h1 id="my-h1">welcome to our page</h1>
+<input type="button" value="get content" onclick="getContent()">
+<script>
+function getContent(){
+var heading=document.getElementById("my-h1");//entire h1 element is der inside this heading variable
+console.log(heading);//<h1 id="my-h1">welcome to our page</h1> i.e heading is reference pointing to h1 object.
+//to read the content written inside the html element,use innerHTML property
+console.log(heading.innerHTML); 
+//to change the content
+heading.innerHTML="updated heading";
+
+}
+</script>
+</body>
+
+
+//whenever user will click the button, onClick event will be fired and function will be executed.
+//we need to get h1 object whose id is my-h1
+if on webpage ,we need any object of html element,who will give this object ?document
+//getElementById() will return object based on id provided
+
+note:
+<h1 id="my-h1">welcome <span>to</span> to our page</h1>
+console.log(heading.innerHTML); 
+output:welcome <span>to</span> to our page
+console.log(heading.innerText); //only gives text part
+
+
+==================================================
+//to change content
+<body>
+<h1 id="my-h1">welcome to our page</h1>
+<input type="button" value="get content" onclick="getContent()">
+<script>
+function getContent(){
+var heading=document.getElementById("my-h1");//entire h1 element is der inside this heading variable
+//to change the content
+heading.innerHTML="updated heading";
+
+}
+</script>
+</body>
+
+
+==========================================================
+
+//add new element into dom
+i need 1 form that can have multiple phone no from user. it  shld add element dynamically
+
+<body>
+<input type="text"  placeholder="enter phoneno">
+<input type="button" value="+" onClick=" generateField()">
+<div id="container">// to change the position of the container .acting as parent element for newly created field
+
+</div>
+<script>
+function generateField(){	
+	const input=document.createElement("input");//return reference as input . createelement will introduce new element in dom
+
+	//add  attributes to the elements
+	input.setAttribute("type","text");// will assign a new value to the mentioned attribute
+	input.setAttribute("placeholder","enter phno");
+	//to display new created element in the container div ========>child is input div is parent
+	const containerdiv=document.getElementById("container"); // containerdiv is reference
+	container.appendChild(input);//we have to add this input element as a child to div parent
+
+}
+</script>
+</body>
+====================================================
+
+//approach 1 directly remove existing element 
+<body>
+<div id="container">
+		<input type="text"  placeholder="enter phoneno" id="phone-field">
+
+</div>
+<input type="button" value="-" onClick=" removeField()">
+
+<script>
+function removeField(){	
+	
+	const phonefield=document.getElementById("phone-field");
+	phonefield.remove();//predefined function
+}
+</script>
+</body>
+
+//approach 2 to remove element
+first get the obj of container and input element and  from the container remove input element as a child
+
+<body>
+<div id="container">
+		<input type="text"  placeholder="enter phoneno" id="phone-field">
+
+</div>
+<input type="button" value="-" onClick=" removeField()">
+
+<script>
+function removeField(){	
+	
+	const phonefield=document.getElementById("phone-field");
+	const containerdiv=document.getElementById("container");
+	containerdiv.removeChild(phonefield);
+}
+</script>
+</body>
+
+=======================================================================
+//when user clicks on show button,password will be display 
+show and hide password
+
+
+
+					========================================================
+
+
+// to read attribute value use getattribute()
+<body>
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <input type="password" placeholder="enter password" id="password-field">
+<input type="button" value="show" onClick="showPassword()" id="btn">
+<script>
+function showPassword(){
+const password=document.getElementById("password-field");
+const btn=document.getElementById("btn");
+const btnText=btn.getAttribute("value");
+if(btnText=="show"){
+password.setAttribute("type","text");
+btn.setAttribute("value","hide");
+}
+else
+{
+password.setAttribute("type","password");
+btn.setAttribute("value","show");
+}
+}
+</script>
+
+    </body>
+</html>
+
+========================================================================
+Assignment
+bulb--->on/off
+src of the image we need to change.
+
+=======================================================================
+
+
+//when user will click on button,we need to read the value of textbox, need to read name and greet that particular user
+
+<body>
+<input type="text" placeholder="enter a value" id="name">
+<input type ="button" value="get name" onclick="getInput()">
+<script>
+function getInput(){
+const nameField=document.getElementById("name");
+const name=nameField.value;//input tag is empty.it do not contain any data. if u want to get value which is enter by user ,we will get attribute as value.
+alert("hello"+name);
+
+OR
+//alert("hello " +document.getElementById("name").value);
+
+}
+</script>
+</body>
+====================================================
+//accept 2 elements and print the result in h3 tag
+
+<input type="text" placeholder="enter 1st value" id="n1">
+<input type="text" placeholder="enter 2nd value" id="n2">
+<input type="button"  value="sum" onclick="sum()">
+<h3 id="result"></h3>
+<script>
+function sum(){
+const a=document.getElementById("n1").value;
+const b=document.getElementById("n2").value;
+const c=a+b;
+document.getElementById("result").innerHTML="SUM IS " + c;
+
+}
+</script>
+
+//value is coming in the form of string.
+                                                      ======================================================
+parse dont mean convert.it means read integer value from that string value. value is getting extracted
+
+
+<input type="text" placeholder="enter 1st value" id="n1">
+<input type="text" placeholder="enter 2nd value" id="n2">
+<input type="button"  value="sum" onclick="sum()">
+<h3 id="result"></h3>
+<script>
+function sum(){
+const a=parseInt(document.getElementById("n1").value);
+const b=parseInt(document.getElementById("n2").value);
+const c=a+b;
+document.getElementById("result").innerHTML="SUM IS " + c;
+
+}
+</script>
+                                                      ======================================================
+<!DOCTYPE html>
+<html>
+<body>
+<input type="text" placeholder="enter 1st no" id="input1">
+<input type="text" placeholder="enter 2nd no" id="input2">
+<input type="button" value="add" onclick="summation()">
+<h3 id="h3id"></h3>
+<script>
+    function summation()
+    {
+            var a=document.getElementById("input1").value;
+            var b=document.getElementById("input2").value;
+            c= +a + +b;
+            document.getElementById("h3id").innerHTML=c;
+    }
+</script>
+</body>
+</html>
+
+===============================================================
+
+HTML DOM Document querySelector()
+The querySelector() method returns the first element that matches a CSS selector.
+
+To return all matches (not only the first), use the querySelectorAll() instead.
+
+Get the first <p> element:
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>The Document Object</h1>
+<h2>The querySelector() Method</h2>
+
+<h3>Add a background color to the first p element:</h3>
+<p>This is a p element.</p>
+<p>This is a p element.</p>
+
+<script>
+document.querySelector("p").style.backgroundColor = "red";
+</script>
+
+</body>
+</html>
+============================================================
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Document Object</h1>
+<h2>The querySelector() Method</h2>
+
+<p>Add a background color to the first element with class="example":</p>
+
+<p class="example">I am a paragraph.</p>
+<p class="example">I am a paragraph.</p> 
+
+<script>
+document.querySelector(".example").style.backgroundColor = "red";
+</script>
+
+</body>
+</html>
+
+
+
+=====================================
+The querySelectorAll() method returns all elements that matches a CSS selector(s).
+
+The querySelectorAll() method returns a NodeList.
+A NodeList is an array-like collection (list) of nodes.
+The nodes in the list can be accessed by index. The index starts at 0.
+<!DOCTYPE html>
+<html>
+<body>
+<h1>The Document Object</h1>
+<h2>The querySelectorAll() Method</h2>
+
+<p>Add a background color all elements with class="example":</p>
+<h2 class="example">A heading</h2>
+<p class="example">A paragraph.</p> 
+
+<script>
+const nodeList = document.querySelectorAll(".example");
+for (let i = 0; i < nodeList.length; i++) {
+  nodeList[i].style.backgroundColor = "red";
+
+
+}
+</script>
+
+</body>
+</html>
+
+=======================================================
+The getElementsByTagName() method returns a collection of all elements with a specified tag name.
+
+The getElementsByTagName() method returns an HTMLCollection.
+An HTMLCollection is an array-like collection (list) of HTML elements.
+
+The length Property returns the number of elements in the collection.
+
+The elements can be accessed by index (starts at 0).
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Document Object</h1>
+<h2>The getElementsByTagName() Method</h2>
+
+<p>An unordered list:</p>
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<p>The innerHTML of the second li element is:</p>
+<p id="demo"></p>
+
+<script>
+const collection = document.getElementsByTagName("li");
+document.getElementById("demo").innerHTML = collection[1].innerHTML;
+</script>
+
+</body>
+</html>
+====================================================
+The getElementsByClassName() method returns a collection of elements with a specified class name(s).
+
+The getElementsByClassName() method returns an HTMLCollection.
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Document Object</h1>
+<h2>The getElementsByClassName() Method</h2>
+
+<p>Change the text of the first element with class="example":</p>
+
+<div class="example">Element1</div>
+<div class="example">Element2</div>
+
+<script>
+const collection = document.getElementsByClassName("example");
+collection[0].innerHTML = "Hello World!";
+</script>
+
+</body>
+</html>
+
+
+===================================================================================
+Extra ASSIGNMENT
+<!-- element o+bject properties
+innerText => this prop used to retrieve data from html element, 
+						we can assign data to html element
+					=> it sup paired tag only, but string data only
+		Syn:-		ele-obj.innerText
+						ele-obj.innerText=value;
+
+innerHTML =>	 --do--
+					=> it sup paired tag only,  string data & html content (like <h1>  #1234ab		&gt; ...)
+		Syn:-		ele-obj.innerHTML
+						ele-obj.innerHTML=value/html con;
+
+value	=>  --do--			
+			=> it sup un-paired tag only, but string data only
+		Syn:-		ele-obj.value
+						ele-obj.value=value;		
+ 
+tagName ==> it returns name of tag 
+			Syn:-	ele-obj.tagName
+-->	
+<!-- example on DOM -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+	<meta charset="UTF-8">
+	<title>Dom</title>
+ </head>
+ <body>
+	<h3>demo on element properties (data manipulation)</h3>
+	<h1 id="head1">Hello</h1>
+	<input type="text" id="tb1" name="tb1" value="1000"/>
+	<hr>
+	<script>
+		//paired tag     
+		const h1 = document.getElementById("head1");
+		document.write(`${h1.innerText}<br>`);
+		//h1.innerText=`Hi`;	  updation
+		//h1.innerText+=` Siva`;		appending
+        //h1.innerText=``;		deletion
+
+		//input tag
+		const tb = document.getElementById("tb1");
+		document.write(`${tb.value}<br>`);
+		//tb.value=1234;		updation
+		//tb.value+=`apples`;    appending
+		tb.value=``;		// deletion
+
+	</script>
+  </body>
+</html>
+
+==========================================================================
+
+<!-- example on DOM -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>DOM</title>
+ </head>
+ <body>
+	<h3>demo on element object properties (data manipulation)</h3>
+	<div id="div1"> </div>
+	<div id="div2"> </div>
+	<script>
+		const div1 = document.querySelector("#div1");
+		const div2 = document.querySelector("#div2");
+		//difference b/w innerText & innerHTML
+		div1.innerText="mangos 1kg <strong>&#8377;200</strong>";
+		div2.innerHTML="mangos 1kg <strong>&#8377;200</strong>";
+	</script>
+ </body>
+</html>
+
+=========================================
+
+
+=======================================================================
+
+==================================
+
+
+
+
+

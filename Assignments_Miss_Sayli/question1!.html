@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments 1 !</title>
+</head>
+<body>
+     
+   <form action="">
+     
+    <input type="text" placeholder="Usernmae" id="user" >
+    <br><br>
+    <input type="password" placeholder="Password" id="pass">
+     <br><br>
+    <input type="button" value="Login" onclick="validate()">
+     
+    <br><br>
+
+    <p id="idp"> </p>
+   </form>
+
+   <script>
+     
+
+     function validate(){
+           
+         const user=document.getElementById('user').value;
+         const pass=document.getElementById('pass').value;
+          const para=document.getElementById('idp');
+         if(user=='iet' && pass==123){
+            para.innerHTML="Welcome To My World";
+            document.getElementById('user').value="";
+            document.getElementById('pass').value="";
+         }
+         else if(user=='cdac' && pass==456){
+            para.innerHTML="Welcome To My World";
+            document.getElementById('user').value="";
+            document.getElementById('pass').value="";
+        }
+        else if(user=='software' && pass==789){
+            para.innerHTML="Welcome To My World";
+            document.getElementById('user').value="";
+            document.getElementById('pass').value.value="";
+        }
+        else{
+            para.innerHTML="You Dont have a Authorization";
+        }
+         
+        
+     }
+
+   </script>
+    
+</body>
+</html>

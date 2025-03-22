@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $("p").css('background','green');
+
+            
+        }
+
+        )
+    </script>
+</head>
+<body>
+    <h1>IET</h1>
+
+        <p id="id1" class="remaining">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem iusto, laudantium perspiciatis molestias tempore minus, itaque, libero animi sunt aut totam molestiae quos est ducimus quod deleniti fugiat recusandae facilis?</p>
+        
+        <p id="id2" class="remaining">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem iusto, laudantium perspiciatis molestias tempore minus, itaque, libero animi sunt aut totam molestiae quos est ducimus quod deleniti fugiat recusandae facilis?</p>
+        
+        <p id="id3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem iusto, laudantium perspiciatis molestias tempore minus, itaque, libero animi sunt aut totam molestiae quos est ducimus quod deleniti fugiat recusandae facilis?</p>
+        
+        <p id="id4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem iusto, laudantium perspiciatis molestias tempore minus, itaque, libero animi sunt aut totam molestiae quos est ducimus quod deleniti fugiat recusandae facilis?</p>
+        
+
+        <ol id="id5">
+            <li>IET</li>
+            <li>CDAC</li>
+            <li>GOOD Bye</li>
+            </ol>
+        
+
+
+    
+        <script>
+            $(document).ready(()=>{
+                $(".remaining").css('width','200px');
+                $("p:nth-of-type(3)").css("fontSize",'40px');
+                $('h1').text("IET");
+                var a=$('li').text();
+                
+                $('p:last').text(`${a}`);
+                
+            }
+    
+            )
+        </script>
+    </head>
+
+</body>
+</html>

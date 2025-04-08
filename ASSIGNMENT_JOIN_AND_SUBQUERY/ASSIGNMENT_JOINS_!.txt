@@ -1,0 +1,341 @@
+
+
+1.	Display Name of the salesperson, customer name and amount of sales. 
+
+solution :
+
+ select s.sname "SalesPerson", c.cname "Customer", o.amt "Amount" from  salespeople s, orders o, customers c where s.snum = o.snum and o.cnum = c.cnum;
++-------------+----------+---------+
+| SalesPerson | Customer | Amount  |
++-------------+----------+---------+
+| Rajan       | Santosh  |  767.19 |
+| James       | Santosh  |   18.69 |
+| Alax        | Santosh  |  500.58 |
+| Natasha     | Santosh  |   245.6 |
+| Natasha     | Santosh  |  600.65 |
+| James       | Santosh  |  138.35 |
+| Rajan       | Santosh  |  125.45 |
+| Alax        | Joe      |   75.75 |
+| Alax        | Joe      | 1713.23 |
+| Alax        | Joe      | 3455.78 |
+| Alax        | Joe      | 1245.98 |
+| Rajan       | Joe      |  767.19 |
+| Alax        | Joe      | 1713.23 |
+| Monika      | Joe      |   75.75 |
+| Natasha     | Joe      | 1309.95 |
+| Alax        | Joe      | 3455.78 |
+| Alax        | Joe      | 1245.98 |
+| Natasha     | Joe      |  522.23 |
+| James       | Joe      |  980.65 |
+| James       | Joe      | 1000.95 |
+| James       | Joe      |  790.75 |
+| Natasha     | Raj      | 5160.45 |
+| James       | Raj      | 5160.45 |
+| Natasha     | Grass    | 1309.95 |
+| Natasha     | Grass    |   734.5 |
+| Natasha     | Grass    |   734.5 |
+| Alax        | Grass    |  1200.8 |
+| James       | Grass    | 2133.35 |
+| Rajan       | Raja     |    4723 |
+| Rajan       | Raja     | 9891.88 |
+| Rajan       | Raja     | 3721.53 |
+| Rajan       | Raja     | 1729.67 |
+| Natasha     | Raja     |    4723 |
+| Rajan       | Raja     | 9891.88 |
+| Rajan       | Raja     | 3721.53 |
+| James       | Raja     | 1729.67 |
+| James       | Raja     | 3434.55 |
+| James       | Raja     |  1500.5 |
+| Monika      | Raja     |  535.25 |
+| James       | Raja     | 1100.25 |
+| Monika      | Jackson  |  1900.1 |
+| Monika      | Jackson  |  1900.1 |
+| Rajan       | Jackson  |   125.5 |
+| James       | William  |   18.69 |
+| James       | William  | 1098.16 |
+| James       | William  | 1098.16 |
+| James       | William  |   457.4 |
+| Alax        | William  |   145.2 |
+| James       | William  | 1350.75 |
++-------------+----------+---------+
+49 rows in set (0.00 sec)
+
+
+2.	List employee name and name of managers.
+
+solution :
+
+select e.ename "Employee_Name", m.ename "Manager_Name"  from emp e join emp m on e.mgr=m.empno;
++---------------+--------------+
+| Employee_Name | Manager_Name |
++---------------+--------------+
+| GITA          | GRASS        |
+| VRUSHALI      | GRASS        |
+| SHARMIN       | GRASS        |
+| BANDISH       | GRASS        |
+| SMITH         | FORD         |
+| AARAV         | FORD         |
+| THOMAS        | GRASS        |
+| ALLEN         | BLAKE        |
+| WARD          | BLAKE        |
+| JONES         | KING         |
+| MARTIN        | BLAKE        |
+| BLAKE         | KING         |
+| CLARK         | KING         |
+| SCOTT         | JONES        |
+| FRED          | KING         |
+| TURNER        | BLAKE        |
+| ADAMS         | SCOTT        |
+| JAMES         | BLAKE        |
+| FORD          | JONES        |
+| HOFFMAN       | JONES        |
+| GRASS         | HOFFMAN      |
+| MILLER        | CLARK        |
+| AARUSH        | FORD         |
+| ALEX          | BLAKE        |
+| NATASHA       | GRASS        |
+| SANGITA       | GRASS        |
+| SUPRIYA       | GRASS        |
++---------------+--------------+
+27 rows in set (0.00 sec)
+
+
+3.	Display details of all departments and the corresponding employees 
+
+solution :
+
+select e.ename "Emp_Name",  d.dname "Department_name" from emp e join dept d on e.deptno=d.deptno;
++----------+-----------------+
+| Emp_Name | Department_name |
++----------+-----------------+
+| AARAV    | ACCOUNTING      |
+| THOMAS   | ACCOUNTING      |
+| CLARK    | ACCOUNTING      |
+| KING     | ACCOUNTING      |
+| MILLER   | ACCOUNTING      |
+| SHARMIN  | RESEARCH        |
+| BANDISH  | RESEARCH        |
+| SMITH    | RESEARCH        |
+| JONES    | RESEARCH        |
+| SCOTT    | RESEARCH        |
+| FRED     | RESEARCH        |
+| ADAMS    | RESEARCH        |
+| FORD     | RESEARCH        |
+| GITA     | SALES           |
+| ALLEN    | SALES           |
+| WARD     | SALES           |
+| MARTIN   | SALES           |
+| BLAKE    | SALES           |
+| TURNER   | SALES           |
+| JAMES    | SALES           |
+| HOFFMAN  | SALES           |
+| GRASS    | SALES           |
+| AARUSH   | SALES           |
+| ALEX     | SALES           |
+| NATASHA  | SALES           |
+| VRUSHALI | HR              |
+| SANGITA  | HR              |
+| SUPRIYA  | HR              |
++----------+-----------------+
+28 rows in set (0.00 sec)
+
+4.	Display all customer names with their order details (order number and ship date) for the orders shipped in 1987.
+
+solution : 
+
+select c.name, o.orderdate, o.shipdate from customer c  join ord o  on c.custid = o.custid;
++----------------------------------------------+---------------------+---------------------+
+| name                                         | orderdate           | shipdate            |
++----------------------------------------------+---------------------+---------------------+
+| SHAPE UP                                     | 1986-05-01 00:00:00 | 1986-05-30 00:00:00 |
+| VOLLYRITE                                    | 1986-06-05 00:00:00 | 1986-06-20 00:00:00 |
+| VOLLYRITE                                    | 1986-06-05 00:00:00 | 1986-06-05 00:00:00 |
+| SHAPE UP                                     | 1986-06-15 00:00:00 | 1986-05-30 00:00:00 |
+| SHAPE UP                                     | 1986-07-14 00:00:00 | 1986-07-30 00:00:00 |
+| JOCKSPORTS                                   | 1986-07-14 00:00:00 | 1986-07-30 00:00:00 |
+| EVERY MOUNTAIN                               | 1986-07-18 00:00:00 | 1986-07-18 00:00:00 |
+| EVERY MOUNTAIN                               | 1986-07-25 00:00:00 | 1986-07-25 00:00:00 |
+| JOCKSPORTS                                   | 1986-08-01 00:00:00 | 1986-08-15 00:00:00 |
+| TKB SPORT SHOP                               | 1987-01-07 00:00:00 | 1987-01-08 00:00:00 |
+| VOLLYRITE                                    | 1987-01-11 00:00:00 | 1987-01-11 00:00:00 |
+| EVERY MOUNTAIN                               | 1987-01-15 00:00:00 | 1987-01-20 00:00:00 |
+| NORTH WOODS HEALTH AND FITNESS SUPPLY CENTER | 1987-02-01 00:00:00 | 1987-02-01 00:00:00 |
+| VOLLYRITE                                    | 1987-02-01 00:00:00 | 1987-02-05 00:00:00 |
+| WOMENS SPORTS                                | 1987-02-01 00:00:00 | 1987-02-06 00:00:00 |
+| JUST TENNIS                                  | 1987-02-03 00:00:00 | 1987-02-10 00:00:00 |
+| K + T SPORTS                                 | 1987-02-05 00:00:00 | 1987-03-03 00:00:00 |
+| VOLLYRITE                                    | 1987-02-15 00:00:00 | 1987-03-06 00:00:00 |
+| EVERY MOUNTAIN                               | 1987-02-22 00:00:00 | 1987-02-04 00:00:00 |
+| JOCKSPORTS                                   | 1987-03-12 00:00:00 | 1987-03-12 00:00:00 |
+| JOCKSPORTS                                   | 1987-03-15 00:00:00 | 1987-03-14 00:00:00 |
+| K + T SPORTS                                 | 1986-12-31 00:00:00 | 1987-01-01 00:00:00 |
+| K + T SPORTS                                 | 1987-01-06 00:00:00 | 1987-01-06 00:00:00 |
+| K + T SPORTS                                 | 1987-01-09 00:00:00 | 1987-01-10 00:00:00 |
+| WOMENS SPORTS                                | 1987-01-31 00:00:00 | 1987-02-01 00:00:00 |
+| JOCKSPORTS                                   | 1987-02-13 00:00:00 | 1987-02-14 00:00:00 |
++----------------------------------------------+---------------------+---------------------+
+26 rows in set (0.10 sec)
+
+
+
+5.	Display salesman names and names of customers they are dealing with.
+
+solution : 
+
+select sname "salesman" , cname "customer" from salespeople s join customers c on s.snum = c.snum;
++----------+----------+
+| salesman | customer |
++----------+----------+
+| Rajan    | Santosh  |
+| Alax     | Joe      |
+| Natasha  | Raj      |
+| Natasha  | Grass    |
+| Rajan    | Raja     |
+| Monika   | Jackson  |
+| James    | William  |
+| James    | Smith    |
+| James    | ADAMS    |
++----------+----------+
+9 rows in set (0.00 sec)
+
+
+6.	Display salesman who did not earn commission, with customer names whom they are dealing with.	
+
+solution : 
+
+
+select sname from salespeople s join customers c on s.snum = c.snum where comm is null;
+Empty set (0.00 sec)
+
+
+
+7.	Display salesman names, salary, commission and their salary grades.
+
+solution :
+
+
+select e.ename, e.sal, e.job,e.comm, s.grade  from emp e, salgrade s where e.job = "salesman"  and e.sal between losal and hisal;
++--------+------+----------+------+-------+
+| ename  | sal  | job      | comm | grade |
++--------+------+----------+------+-------+
+| AARUSH | 1350 | SALESMAN | 2700 |     2 |
+| MARTIN | 1250 | SALESMAN | 1400 |     2 |
+| WARD   | 1250 | SALESMAN |  500 |     2 |
+| TURNER | 1500 | SALESMAN |    0 |     3 |
+| ALLEN  | 1600 | SALESMAN |  300 |     3 |
+| GRASS  | 2575 | SALESMAN | 2700 |     4 |
++--------+------+----------+------+-------+
+6 rows in set (0.00 sec)
+
+
+
+8.	Display all Tennis products and their price details (standard and minimum price).
+
+solution:
+
+select prodname , amount from sales where prodname like '%Tennis%';
++-------------------------+----------+
+| prodname                | amount   |
++-------------------------+----------+
+| ACE TENNIS BALLS-3 PACK |  3306.00 |
+| ACE TENNIS RACKET I     | 16569.00 |
+| ACE TENNIS NET          |   464.00 |
+| ACE TENNIS RACKET II    |  4584.00 |
+| ACE TENNIS RACKET I     |   440.00 |
+| ACE TENNIS BALLS-3 PACK |  1400.00 |
+| SP TENNIS RACKET        |  1200.00 |
+| RH: "GUIDE TO TENNIS"   |    34.00 |
+| RH: "GUIDE TO TENNIS"   |  1703.40 |
+| ACE TENNIS BALLS-6 PACK |   846.80 |
+| SP TENNIS RACKET        |    24.00 |
+| ACE TENNIS RACKET II    |   485.00 |
+| ACE TENNIS BALLS-3 PACK |   292.50 |
+| ACE TENNIS NET          |    50.00 |
+| ACE TENNIS RACKET I     |    35.00 |
+| ACE TENNIS BALLS-3 PACK |     8.40 |
+| ACE TENNIS NET          |    58.00 |
+| ACE TENNIS RACKET II    |  2300.50 |
+| ACE TENNIS RACKET I     |  3000.00 |
+| ACE TENNIS RACKET II    |   810.00 |
+| ACE TENNIS BALLS-6 PACK |   560.00 |
+| SP TENNIS RACKET        |  4800.00 |
+| ACE TENNIS BALLS-6 PACK |  5600.00 |
+| ACE TENNIS RACKET II    |   180.00 |
+| ACE TENNIS BALLS-3 PACK |   280.00 |
+| ACE TENNIS BALLS-6 PACK |   250.00 |
+| ACE TENNIS RACKET II    |   450.00 |
+| ACE TENNIS BALLS-3 PACK |   140.00 |
+| ACE TENNIS NET          |   116.00 |
+| RH: "GUIDE TO TENNIS"   |    34.00 |
+| ACE TENNIS RACKET I     |  1750.00 |
+| ACE TENNIS RACKET II    |  4500.00 |
+| ACE TENNIS BALLS-3 PACK |  1400.00 |
+| ACE TENNIS BALLS-6 PACK |  2800.00 |
+| ACE TENNIS NET          | 29000.00 |
+| SP TENNIS RACKET        |  2400.00 |
+| RH: "GUIDE TO TENNIS"   |   340.00 |
+| RH: "GUIDE TO TENNIS"   |   340.00 |
+| ACE TENNIS RACKET I     |   350.00 |
++-------------------------+----------+
+39 rows in set (0.03 sec)
+
+
+9.	Display the products purchased by either JOCKSPORTS (customer number 100) or JUST TENNIS (customer number 103) or both of them.
+
+solution :
+
+
+select a.prodid, p.descrip  from sales a join product p on a.prodid = p.prodid where custid in (100,103);
++--------+-------------------------+
+| prodid | descrip                 |
++--------+-------------------------+
+| 102130 | RH: "GUIDE TO TENNIS"   |
+| 100861 | ACE TENNIS RACKET II    |
+| 100870 | ACE TENNIS BALLS-3 PACK |
+| 100890 | ACE TENNIS NET          |
+| 100860 | ACE TENNIS RACKET I     |
+| 200376 | SB ENERGY BAR-6 PACK    |
+| 100861 | ACE TENNIS RACKET II    |
+| 100870 | ACE TENNIS BALLS-3 PACK |
+| 100890 | ACE TENNIS NET          |
+| 102130 | RH: "GUIDE TO TENNIS"   |
+| 200376 | SB ENERGY BAR-6 PACK    |
++--------+-------------------------+
+11 rows in set (0.00 sec)
+
+
+
+10.	Display the department name, and salary of any employee whose salary and commission matches both the salary and commission of any employee in DALLAS.
+
+solution : 
+
+select d.dname, e.sal  from dept d join  emp e on d.deptno = e.deptno where(e.sal in (select sal from emp where deptno=20) or e.comm in  (select comm from emp where  deptno=20)) and e.deptno<>20;
++------------+------+
+| dname      | sal  |
++------------+------+
+| ACCOUNTING | 1750 |
+| ACCOUNTING | 5000 |
+| SALES      | 1750 |
+| SALES      | 1750 |
+| HR         | 1750 |
+| HR         | 1750 |
+| HR         | 1750 |
++------------+------+
+7 rows in set (0.00 sec)
+
+
+11.	List out the common jobs in Research and Accounting Departments in ascending order.
+
+solution : 
+
+select distinct  e.job from emp e join dept d  on e.deptno = d.deptno where  d.dname in ("Research")  and e.job in (select e1.job from emp e1 join dept d1 on e1.deptno = d1.deptno where d1.dname="accounting");
++---------+
+| job     |
++---------+
+| CLERK   |
+| MANAGER |
++---------+
+2 rows in set (0.01 sec)
+
+
+	
